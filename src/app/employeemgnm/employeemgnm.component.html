@@ -1,0 +1,123 @@
+<div class="container d-flex justify-content-center mt-5">
+  <!-- Form Container -->
+  <form 
+    (ngSubmit)="saveEmployee()" 
+    #employeeForm="ngForm" 
+    class="card p-5 shadow-lg rounded-4 border-0" 
+    style="width: 100%; max-width: 500px; background: #ffffff;">
+
+    <h2 
+      class="text-center mb-4 text-primary fw-bold" 
+      style="font-family: 'Poppins', sans-serif;">
+      Employee Management
+    </h2>
+
+    <!-- Name Field -->
+    <div class="form-group mb-4">
+      <label for="name" class="form-label fw-semibold text-dark">Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="employee.name"
+        name="name"
+        required
+        class="form-control form-control-lg rounded-pill"
+        placeholder="Enter employee's name"
+      />
+    </div>
+
+    <!-- Age Field -->
+    <div class="form-group mb-4">
+      <label for="age" class="form-label fw-semibold text-dark">Age</label>
+      <input
+        id="age"
+        type="number"
+        [(ngModel)]="employee.age"
+        name="age"
+        required
+        class="form-control form-control-lg rounded-pill"
+        placeholder="Enter employee's age"
+      />
+    </div>
+
+    <!-- Status Field -->
+    <div class="form-group mb-4">
+      <label for="status" class="form-label fw-semibold text-dark">Status</label>
+      <select
+        id="status"
+        [(ngModel)]="employee.status"
+        name="status"
+        required
+        class="form-select form-select-lg rounded-pill">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group mb-4">
+      <label for="email" class="form-label fw-semibold text-dark">Email</label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="employee.email"
+        name="email"
+        required
+        class="form-control form-control-lg rounded-pill"
+        placeholder="Enter employee's email"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit" 
+      class="btn btn-primary btn-lg w-100 fw-bold rounded-pill" 
+      style="background: linear-gradient(90deg, #007bff, #0056d2); border: none;">
+      {{ isEdit ? 'Update' : 'Add' }} Employee
+    </button>
+  </form>
+</div>
+
+<!-- Employee List Section -->
+<div class="container mt-5">
+  <div class="employee-list">
+    <h3 
+      class="text-center mb-4 text-dark fw-bold" 
+      style="font-family: 'Poppins', sans-serif;">
+      Employee List
+    </h3>
+
+    <ul class="list-group">
+      <li 
+        *ngFor="let employee of employees" 
+        class="list-group-item d-flex justify-content-between align-items-center shadow-sm mb-3 border-0 rounded-3" 
+        style="background: #f8f9fa;">
+
+        <span class="d-flex flex-column">
+          <strong class="text-dark" style="font-size: 1.1rem;">{{ employee.name }}</strong>
+          <small class="text-muted" style="font-size: 0.9rem;">{{ employee.status }} - {{ employee.email }}</small>
+        </span>
+
+        <div>
+          <button
+            (click)="editEmployee(employee)"
+            class="btn btn-sm btn-outline-primary rounded-pill me-2"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Edit Employee">
+            <i class="bi bi-pencil"></i> Edit
+          </button>
+
+          <button
+            (click)="deleteEmployee(employee.id)"
+            class="btn btn-sm btn-outline-danger rounded-pill"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Delete Employee">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
