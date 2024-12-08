@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://employeejsonserver-eyf8.onrender.com';
+  private apiUrl = 'https://empserver-knz8.onrender.com/';
 
   constructor(private http: HttpClient) {}
 
